@@ -29,6 +29,9 @@ export const auth = betterAuth({
       });
       // TODO: Ao adaptar para o usuário ter múltiplas clínicas, deve-se mudar esse código
       const clinic = clinics?.[0];
+      {
+        /* Verificar essa parte que crachou Aula 3 minuto 50 */
+      }
       return {
         user: {
           ...user,

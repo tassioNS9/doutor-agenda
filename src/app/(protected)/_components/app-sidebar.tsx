@@ -103,6 +103,7 @@ export function AppSidebar() {
                     <AvatarFallback>F</AvatarFallback>
                   </Avatar>
                   <div>
+                    {/* Verificar essa parte que crachou */}
                     <p className="text-sm">
                       {session.data?.user?.clinic?.name}
                     </p>
