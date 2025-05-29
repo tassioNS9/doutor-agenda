@@ -12,6 +12,7 @@ import {
   PageTitle,
 } from "@/components/ui/page-container";
 import { auth } from "@/lib/auth";
+import AddDoctorButton from "./_components/add-doctor-button";
 
 //import AddDoctorButton from "./_components/add-doctor-button";
 //import DoctorCard from "./_components/doctor-card";
@@ -34,10 +35,7 @@ const DoctorsPage = async () => {
           <PageDescription>Gerencie os médicos da sua clínica</PageDescription>
         </PageHeaderContent>
         <PageActions>
-          <Button>
-            <Plus />
-            Adicionar médico
-          </Button>
+             <AddDoctorButton />  
         </PageActions>
       </PageHeader>
     </PageContainer>
