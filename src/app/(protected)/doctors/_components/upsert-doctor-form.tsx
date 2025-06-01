@@ -75,6 +75,7 @@ interface UpsertDoctorFormProps {
 
 const UpsertDoctorForm = ({ doctor, onSuccess }: UpsertDoctorFormProps) => {
   const form = useForm<z.infer<typeof formSchema>>({
+    // reseta os campos não controlados quando o formulário é submetido
     shouldUnregister: true,
     resolver: zodResolver(formSchema),
     defaultValues: {
