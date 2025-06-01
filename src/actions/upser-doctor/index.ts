@@ -20,6 +20,8 @@ export const upsertDoctor = actionClient
     const availableFromTime = parsedInput.availableFromTime; // 15:30:00
     const availableToTime = parsedInput.availableToTime; // 16:00:00
 
+    // Convert availableFromTime and availableToTime to UTC
+    // Assuming availableFromTime and availableToTime are in the format "HH:mm:ss"
     const availableFromTimeUTC = dayjs()
       .set("hour", parseInt(availableFromTime.split(":")[0]))
       .set("minute", parseInt(availableFromTime.split(":")[1]))
