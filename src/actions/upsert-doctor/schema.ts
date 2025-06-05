@@ -2,8 +2,6 @@ import { z } from "zod";
 
 export const upsertDoctorSchema = z
   .object({
-    // O Identificador é opcional para o caso de edição
-    // de um médico já existente, mas obrigatório para a criação de um novo.
     id: z.string().uuid().optional(),
     name: z.string().trim().min(1, {
       message: "Nome é obrigatório.",
