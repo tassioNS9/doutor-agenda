@@ -102,6 +102,7 @@ const AddAppointmentForm = ({
         date: dayjs(selectedDate).format("YYYY-MM-DD"),
         doctorId: selectedDoctorId,
       }),
+    // só vai está disponível a server action se já tiver selecionado o médico e a data e ai então chama a rota
     enabled: !!selectedDate && !!selectedDoctorId,
   });
 

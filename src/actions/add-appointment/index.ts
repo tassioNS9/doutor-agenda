@@ -24,6 +24,8 @@ export const addAppointment = actionClient
     if (!session?.user.clinic?.id) {
       throw new Error("Clinic not found");
     }
+
+    // Só vai está disponível se já estiver algum registro já estiver no banco
     const availableTimes = await getAvailableTimes({
       doctorId: parsedInput.doctorId,
       date: dayjs(parsedInput.date).format("YYYY-MM-DD"),
