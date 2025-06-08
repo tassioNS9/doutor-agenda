@@ -22,6 +22,7 @@ import AppointmentsChart from "./_components/appointments-chart";
 import { DatePicker } from "./_components/date-picker";
 import StatsCards from "./_components/stats-cards";
 import TopDoctors from "./_components/top-doctors";
+import TopSpecialties from "./_components/top-specialties";
 
 interface DashboardPageProps {
   searchParams: Promise<{
@@ -40,9 +41,6 @@ const DashboardPage = async ({ searchParams }: DashboardPageProps) => {
   if (!session.user.clinic) {
     redirect("/clinic-form");
   }
-  // if (!session.user.plan) {
-  //   redirect("/new-subscription");
-  // }
   const { from, to } = await searchParams;
   if (!from || !to) {
     redirect(
@@ -55,6 +53,7 @@ const DashboardPage = async ({ searchParams }: DashboardPageProps) => {
     totalPatients,
     totalDoctors,
     topDoctors,
+    topSpecialties,
     todayAppointments,
     dailyAppointmentsData,
   } = await getDashboard({
@@ -110,7 +109,7 @@ const DashboardPage = async ({ searchParams }: DashboardPageProps) => {
               />
             </CardContent>
           </Card>
-          {/* <TopSpecialties topSpecialties={topSpecialties} /> */}
+          <TopSpecialties topSpecialties={topSpecialties} />
         </div>
       </PageContent>
     </PageContainer>
