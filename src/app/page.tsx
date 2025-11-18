@@ -1,11 +1,10 @@
-import { Button } from "@/components/ui/button";
+import { redirect } from "next/navigation";
+const Home = async () => {
+  redirect("/authentication");
 
-const Home = () => {
   return (
     <div>
-      <h1>
-        <Button>ajdkad</Button>
-      </h1>
+      <h1>Home Page</h1>
     </div>
   );
 };
