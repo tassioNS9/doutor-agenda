@@ -30,13 +30,14 @@ interface AppointmentsChartProps {
 const AppointmentsChart = ({
   dailyAppointmentsData,
 }: AppointmentsChartProps) => {
-  // Gerar 21 dias: 10 antes + hoje + 10 depois
+  // Gerar 21 dias: 10 antes + hoje + 10 depois  dando assim uma lista com 21 dias
   const chartDays = Array.from({ length: 21 }).map((_, i) =>
     dayjs()
       .subtract(10 - i, "days")
       .format("YYYY-MM-DD"),
   );
 
+  // Para cada dia buscar os dados que ele tem
   const chartData = chartDays.map((date) => {
     const dataForDay = dailyAppointmentsData.find((item) => item.date === date);
     return {

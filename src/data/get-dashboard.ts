@@ -19,6 +19,7 @@ interface Params {
 export const getDashboard = async ({ from, to, session }: Params) => {
   const chartStartDate = dayjs().subtract(10, "days").startOf("day").toDate();
   const chartEndDate = dayjs().add(10, "days").endOf("day").toDate();
+  // O TotalRevenuem, totalAppointments pega o valor total referente a cada clinica de acordo ao periodo selecionado
   const [
     [totalRevenue],
     [totalAppointments],
@@ -59,12 +60,17 @@ export const getDashboard = async ({ from, to, session }: Params) => {
       })
       .from(patientsTable)
       .where(eq(patientsTable.clinicId, session.user.clinic.id)),
+
+    // Query que gerar a quantidade total de médicos
     db
       .select({
         total: count(),
       })
       .from(doctorsTable)
       .where(eq(doctorsTable.clinicId, session.user.clinic.id)),
+    // Query que gerar o Top de 10 médicos na ordem decrescente em quantidade de atendimentos
+    // O leftJoin pega os agendamentos que pertence ao médico e referente as datas selecionadas do filtro, onde  os médicos pertecence a clínica do usuario
+    // logado ordenado pelo ID e de forma decrescente
     db
       .select({
         id: doctorsTable.id,
@@ -87,6 +93,8 @@ export const getDashboard = async ({ from, to, session }: Params) => {
       .orderBy(desc(count(appointmentsTable.id)))
       .limit(10),
     db
+      // Query que Pega os agendamentos por especialidade, ou seja pegar de cada médico a especialidade relacionado o filtro da date selecionado
+      // e também apenas da clinica do usuário logado e O orderBy em descrescente
       .select({
         specialty: doctorsTable.specialty,
         appointments: count(appointmentsTable.id),
@@ -118,6 +126,7 @@ export const getDashboard = async ({ from, to, session }: Params) => {
         date: sql<string>`DATE(${appointmentsTable.date})`.as("date"),
         appointments: count(appointmentsTable.id),
         revenue:
+          //A função COALESCE() em SQL retorna o primeiro valor não nulo de uma lista de expressões
           sql<number>`COALESCE(SUM(${appointmentsTable.appointmentPriceInCents}), 0)`.as(
             "revenue",
           ),
