@@ -11,6 +11,8 @@ import {
 } from "@/components/ui/page-container";
 import { auth } from "@/lib/auth";
 
+import { SubscriptionPlan } from "./_components/subscription-plan";
+
 const SubscriptionPage = async () => {
   const session = await auth.api.getSession({
     headers: await headers(),
@@ -30,7 +32,7 @@ const SubscriptionPage = async () => {
         </PageHeaderContent>
       </PageHeader>
       <PageContent>
-        <div>Card de Assinatura</div>
+        <SubscriptionPlan className="w-[350px]" />
       </PageContent>
     </PageContainer>
   );
