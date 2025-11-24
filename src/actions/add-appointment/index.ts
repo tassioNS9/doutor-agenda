@@ -33,6 +33,8 @@ export const addAppointment = actionClient
     if (!availableTimes?.data) {
       throw new Error("No available times");
     }
+
+    //Verifica quando o tempo está disponivel, quando algum registro for igual ao parsedInput.time e está disponivel de fato
     const isTimeAvailable = availableTimes.data?.some(
       (time) => time.value === parsedInput.time && time.available,
     );
