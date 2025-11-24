@@ -147,7 +147,6 @@ export const getDashboard = async ({ from, to, session }: Params) => {
       .groupBy(sql`DATE(${appointmentsTable.date})`)
       .orderBy(sql`DATE(${appointmentsTable.date})`),
   ]);
-  console.log(todayAppointments, "dksjfdk");
   return {
     totalRevenue,
     totalAppointments,
