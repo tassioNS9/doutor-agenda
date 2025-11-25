@@ -32,7 +32,10 @@ const SubscriptionPage = async () => {
         </PageHeaderContent>
       </PageHeader>
       <PageContent>
-        <SubscriptionPlan className="w-[350px]" />
+        <SubscriptionPlan
+          className="w-[350px]"
+          active={session.user.plan === "essential"}
+        />
       </PageContent>
     </PageContainer>
   );
